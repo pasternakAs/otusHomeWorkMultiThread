@@ -1,6 +1,6 @@
 ﻿namespace otusHomeWorkMultiThread
 {
-    public static class ArrayMethodClass
+    public static class EnumerableExtensions
     {
         /// <summary>
         /// Создать и заполнить массив
@@ -27,8 +27,15 @@
         public static int SumArray(int[] array)
         {
             try
-            { 
-                return array.Sum();
+            {
+                var sum = 0;
+
+                for (int i = 0; i < array.Length; i++)
+                {
+                    sum += array[i];
+                }
+
+                return sum;
             }
             catch (OverflowException ov)
             {
@@ -43,23 +50,10 @@
         /// <param name="array"></param>
         /// <param name="countParts"></param>
         /// <returns></returns>
-        public static List<List<T>> SplitArray<T>(T[] array, int countParts)
+        public static List<T[]> SplitArray<T>(T[] array, int countParts)
         {
-            var list = new List<List<T>>();
             var sizeArray = array.Length / countParts;
-
-            for (int i = 0; i < countParts; i++)
-            {
-                if (i == countParts - 1)
-                {
-                    var size = array.Skip(i * sizeArray).Count();
-                    list.Add(array.Skip(i * sizeArray).Take(size).ToList());
-                }
-                else
-                {
-                    list.Add(array.Skip(i * sizeArray).Take(sizeArray).ToList());
-                }
-            }
+            var list = array.Chunk(sizeArray).ToList();
 
             return list;
         }

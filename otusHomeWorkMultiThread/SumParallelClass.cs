@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace otusHomeWorkMultiThread
 {
     public class SumParallelClass : ISum
     {
-        private Stopwatch _sw = new Stopwatch();
+        private readonly Stopwatch _sw = new();
 
         /// <summary>
         /// 
@@ -18,11 +13,12 @@ namespace otusHomeWorkMultiThread
         /// <returns></returns>
         public void Sum(int[] array)
         {
+            _sw.Reset();
             _sw.Start();
             var result = array.AsParallel().Sum();
             _sw.Stop();
 
-            Console.WriteLine("Массив размером - " + array.Length + ". Сумма - " + result + " Время выполнения - " + _sw.Elapsed.TotalMilliseconds);
+            Console.WriteLine("Массив размером - " + array.Length + ". Сумма - " + result + " Время выполнения - " + _sw.Elapsed.TotalSeconds);
         }
     }
 }

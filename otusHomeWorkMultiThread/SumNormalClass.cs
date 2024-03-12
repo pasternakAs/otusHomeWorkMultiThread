@@ -4,7 +4,7 @@ namespace otusHomeWorkMultiThread
 {
     public class SumNormalClass : ISum
     {
-        private Stopwatch _sw = new Stopwatch();
+        private Stopwatch _sw = new();
 
         /// <summary>
         /// 
@@ -12,11 +12,12 @@ namespace otusHomeWorkMultiThread
         /// <param name="array"></param>
         public void Sum(int[] array)
         {
+            _sw.Reset();
             _sw.Start();
-            var result = ArrayMethodClass.SumArray(array);
+            var result = EnumerableExtensions.SumArray(array);
             _sw.Stop();
 
-            Console.WriteLine("Массив размером - " + array.Length  +  ". Сумма - " + result + " Время выполнения - " + _sw.Elapsed.TotalMilliseconds);
+            Console.WriteLine("Массив размером - " + array.Length  +  ". Сумма - " + result + " Время выполнения - " + _sw.Elapsed.TotalSeconds);
         }
     }
 }

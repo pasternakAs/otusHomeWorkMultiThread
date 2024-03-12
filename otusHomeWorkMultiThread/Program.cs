@@ -7,9 +7,9 @@ const int sizeSmall = 100000;
 const int sizeNormal = 1000000;
 const int sizeLarge = 10000000;
 
-var _arrayIntSmall = ArrayMethodClass.CreateArrayInt(sizeSmall);
-var _arrayIntNormal = ArrayMethodClass.CreateArrayInt(sizeNormal);
-var _arrayIntLarge = ArrayMethodClass.CreateArrayInt(sizeLarge);
+var _arrayIntSmall = EnumerableExtensions.CreateArrayInt(sizeSmall);
+var _arrayIntNormal = EnumerableExtensions.CreateArrayInt(sizeNormal);
+var _arrayIntLarge = EnumerableExtensions.CreateArrayInt(sizeLarge);
 
 
 var sumNormal = new SumNormalClass();
@@ -22,21 +22,23 @@ sumNormal.Sum(_arrayIntLarge);
 
 Console.WriteLine(@"");
 
-var sumThread = new SumThreadClass();
+
 Console.WriteLine("Введите число потоков - ");
 var countThread = Convert.ToInt32(Console.ReadLine());
+var sumThread = new SumThreadClass(countThread);
 Console.WriteLine(@"Параллельное на " + countThread + " : ");
-sumThread.Sum(_arrayIntSmall, countThread);
-sumThread.Sum(_arrayIntNormal, countThread);
-sumThread.Sum(_arrayIntLarge, countThread);
+sumThread.Sum(_arrayIntSmall);
+sumThread.Sum(_arrayIntNormal);
+sumThread.Sum(_arrayIntLarge);
 
 Console.WriteLine();
 Console.WriteLine("Введите число потоков - ");
 countThread = Convert.ToInt32(Console.ReadLine());
+var sumThread1 = new SumThreadClass(countThread);
 Console.WriteLine(@"Параллельное на " + countThread + " : ");
-sumThread.Sum(_arrayIntSmall, countThread);
-sumThread.Sum(_arrayIntNormal, countThread);
-sumThread.Sum(_arrayIntLarge, countThread);
+sumThread1.Sum(_arrayIntSmall);
+sumThread1.Sum(_arrayIntNormal);
+sumThread1.Sum(_arrayIntLarge);
 
 Console.WriteLine(@"");
 var sumParallel = new SumParallelClass();
