@@ -39,7 +39,7 @@
             }
             catch (OverflowException ov)
             {
-                return -1;
+                return 0;
             }
         }
 
