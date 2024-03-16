@@ -2,21 +2,15 @@
 
 namespace otusHomeWorkMultiThread
 {
-    public class SumThreadClass : ISum
+    public class SumThreadClass(int countThread) : ISum
     {
         private Stopwatch _sw = new();
-        public int _countThread;
-
-        public SumThreadClass(int countThread)
-        {
-            _countThread = countThread;
-        }
+        public int _countThread = countThread;
 
         /// <summary>
         /// Сумма массива тасками через разбиение
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="countThread"></param>
         /// <returns></returns>
         public void Sum(int[] array)
         {
