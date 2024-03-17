@@ -26,21 +26,14 @@
         /// <returns></returns>
         public static int SumArray(int[] array)
         {
-            try
-            {
-                var sum = 0;
+            var sum = 0;
 
-                for (int i = 0; i < array.Length; i++)
-                {
-                    sum += array[i];
-                }
-
-                return sum;
-            }
-            catch (OverflowException ov)
+            for (int i = 0; i < array.Length; i++)
             {
-                return 0;
+                sum += array[i];
             }
+
+            return sum;
         }
 
         /// <summary>
